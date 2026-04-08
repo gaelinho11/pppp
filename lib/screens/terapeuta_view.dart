@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/chat_screen.dart';
 import 'package:frontend/services/auth_service.dart';
 
 class ListaChatsTerapeuta extends StatelessWidget {
@@ -32,7 +33,15 @@ class ListaChatsTerapeuta extends StatelessWidget {
               title: Text(m['emisor_username']),
               subtitle: Text(m['contenido']),
               onTap: () {
-                // aqui obrire el xat individual
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChatScreen(
+                      receptorId: m['emisor'], // L'emisor del missatge rebut és qui volem contestar
+                      receptorNombre: m['emisor_username'],
+                    ),
+                  ),
+                );
               },
             );
           },
