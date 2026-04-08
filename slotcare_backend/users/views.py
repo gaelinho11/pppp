@@ -17,6 +17,7 @@ from rest_framework.authtoken.models import Token
 from .models import CustomUser, SesionJuego, Noticia
 from rest_framework import status, permissions # Assegura't que tens 'permissions'
 from rest_framework.permissions import AllowAny, IsAuthenticated # Afegeix AllowAny aquí
+from django.db.models import Q
 
 MAX_INTENTS = 3
 
