@@ -81,6 +81,7 @@ class AuthService {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('auth_token', responseData['token']);
         await prefs.setString('user_rol', responseData['rol']);
+        await prefs.setInt('userId', responseData['user_id']);
 
         return {
           'success': true,
@@ -206,5 +207,9 @@ Future<List<dynamic>> getTerapeutes() async {
     return tots.where((u) => u['rol'] == 'Terapeuta').toList();
   }
   return [];
+}
+Future<int?> getUserId() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getInt('userId');
 }
 }

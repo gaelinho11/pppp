@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/pacient_view.dart';
 import 'package:frontend/screens/terapeuta_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/time_service.dart';
@@ -81,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
-    // 3 Pestañas: Juegos, Terapeutas, Perfil
+    // 
     final List<Widget> pages = [
       const DashboardView(),
       const NewsView(),
@@ -338,7 +339,7 @@ class DashboardView extends StatelessWidget {
 }
 
 // --- VISTA 2: TERAPEUTAS ---
-class TherapistsView extends StatelessWidget {
+/*class TherapistsView extends StatelessWidget {
   const TherapistsView({super.key});
 
   @override
@@ -430,7 +431,7 @@ class TherapistsView extends StatelessWidget {
     );
   }
 }
-
+*/
 // --- VISTA 3: PERFIL ---
 class ProfileView extends StatefulWidget {
   final String userRol;

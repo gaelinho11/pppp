@@ -9,6 +9,8 @@ class ChatScreen extends StatefulWidget {
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
+
+  
 }
 
 class _ChatScreenState extends State<ChatScreen> {
@@ -24,7 +26,20 @@ class _ChatScreenState extends State<ChatScreen> {
       setState(() {}); // refresco perque es vegi el nou missatge
     }
   }
+  int? elMeuId;
 
+  @override
+  void initState() {
+    super.initState();
+    _carregarElMeuId();
+  }
+
+  void _carregarElMeuId() async {
+    int? id = await _authService.getUserId();
+    setState(() {
+      elMeuId = id;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +54,11 @@ class _ChatScreenState extends State<ChatScreen> {
                 
                 final tots = snapshot.data as List;
                 // filtro per tenir nomes els missatges entre aquests dos usuaris
-                final xat = tots.where((m) => 
-                  m['emisor'] == widget.receptorId || m['receptor'] == widget.receptorId
-                ).toList();
+                final xat = tots.where((m) {
+                  bool joAAltre = (m['emisor'] == elMeuId && m['receptor'] == widget.receptorId);
+                  bool altreAJo = (m['emisor'] == widget.receptorId && m['receptor'] == elMeuId);
+                  return joAAltre || altreAJo;
+                }).toList();
 
                 return ListView.builder(
                   itemCount: xat.length,
@@ -79,4 +96,5 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
+  
 }

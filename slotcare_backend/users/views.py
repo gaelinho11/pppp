@@ -86,6 +86,7 @@ class LoginView(APIView):
             return Response({
                 "message": "Inici de sessió correcte.", 
                 "rol": user.rol,
+                'user_id': user.id,
                 "token": token.key  # Enviem la clau del token de la base de dades
             }, status=status.HTTP_200_OK)
         else:
